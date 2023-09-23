@@ -13,7 +13,9 @@ const Tab = createBottomTabNavigator();
 // Don't foget to add it here as well! 
 const BottomTabNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{
+      headerShown: false
+    }}>
         {/* Name it whatever you want, component is the name that you put above */}
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
@@ -21,26 +23,5 @@ const BottomTabNavigator = () => {
     </Tab.Navigator>
   );
 };
-
-// const Stack = createNativeStackNavigator();
-
-// const Root = () => {
-//   return (
-//     <NavigationContainer>
-//       <Stack.Navigator>
-//         <Stack.Screen
-//           name="Question Home Screen"
-//           component={QuestionHomeScreen}
-//           style={{ flex: 1 }}
-//         />
-//         <Stack.Screen
-//           name="Question Screen"
-//           component={QuestionScreen}
-//           style={{ flex: 1 }}
-//         />
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// }
 
 export default BottomTabNavigator;

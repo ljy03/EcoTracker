@@ -14,7 +14,7 @@ export default function QuestionHomeScreen({ navigation }) {
         color="green"
         style={{ height: 100, marginTop: 10 }}
         // onPress={() => navigation.navigate("Question Screen")}
-        onPress={() => navigation.navigate('Profile')}
+        onPress={() => navigation.navigate('QuestionScreen')}
         
         options={{ headerShown: false }}
         title="Start Quiz"

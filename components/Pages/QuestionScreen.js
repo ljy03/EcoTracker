@@ -1,6 +1,6 @@
 import { Dimensions } from "react-native";
 import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
-
+import QuestionHomeScreen from "./QuestionHomeScreen.js";
 import { Button, Alert } from "react-native";
 
 export default function QuestionScreen({navigation}) {
@@ -12,28 +12,28 @@ export default function QuestionScreen({navigation}) {
 			<TouchableHighlight style={styles.buttonStyling}>
         <Button
           color="green"
-          onPress={() => navigation.navigate("Question Home Screen")}
+          onPress={() => navigation.navigate("QuestionHomeScreen")}
           title="A) 500 feet"
 				/>
 				</TouchableHighlight>
 				<TouchableHighlight style={styles.buttonStyling}>
 				<Button
           color="green"
-          onPress={() => navigation.navigate("Question Home Screen")}
+          onPress={() => navigation.navigate("QuestionHomeScreen")}
           title="B) 64554 feet"
 				/>
 				</TouchableHighlight>
 				<TouchableHighlight style={styles.buttonStyling}>
 				<Button
           color="green"
-          onPress={() => navigation.navigate("Question Home Screen")}
+          onPress={() => navigation.navigate("QuestionHomeScreen")}
           title="C) 64543 feet"
 				/>
 				</TouchableHighlight>
 				<TouchableHighlight style={styles.buttonStyling}>
 				<Button
           color="green"
-          onPress={() => navigation.navigate("Question Home Screen")}
+          onPress={() => navigation.navigate("QuestionHomeScreen")}
           title="D) 3234 feet"
         />
 				</TouchableHighlight>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   header: {
-    fontSize: Dimensions.get("window").width / 7,
+    fontSize: Dimensions.get("window").width / 10,
   },
   buttonStyling: {
     width: "80%",
