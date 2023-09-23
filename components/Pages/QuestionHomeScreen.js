@@ -1,6 +1,6 @@
 import { Dimensions } from "react-native";
 import QuestionScreen from "./QuestionScreen.js";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 // import { useNavigation } from '@react-navigation/native';
 
 
@@ -10,15 +10,13 @@ export default function QuestionHomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Quiz</Text>
-      <Button
-        color="green"
-        style={{ height: 100, marginTop: 10 }}
-        // onPress={() => navigation.navigate("Question Screen")}
-        onPress={() => navigation.navigate('QuestionScreen')}
-        
-        options={{ headerShown: false }}
-        title="Start Quiz"
-      />
+      <TouchableHighlight style={styles.buttonStyling}>
+				<Button
+          color="green"
+          onPress={() => navigation.navigate("QuestionScreen")}
+          title="Start Quiz"
+        />
+        </TouchableHighlight>
     </View>
   );
 }
@@ -38,7 +36,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonStyling: {
-    width: "80%",
     height: "20%",
     margin: 10,
   },

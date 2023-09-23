@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../Pages/HomeScreen';
 import ProfileScreen from '../Pages/ProfileScreen';
 import QuestionHomeScreen from '../Pages/QuestionHomeScreen';
+import QuestionScreen from '../Pages/QuestionScreen';
 // import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Tab = createBottomTabNavigator();
@@ -20,6 +21,10 @@ const BottomTabNavigator = () => {
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
       <Tab.Screen name="Quiz" component={QuestionHomeScreen} />
+      <Tab.Screen name="QuestionScreen" component={QuestionScreen} options={{
+        tabBarButton: () => null,
+        tabBarVisible: false, // if you don't want to see the tab bar
+      }} />
     </Tab.Navigator>
   );
 };
