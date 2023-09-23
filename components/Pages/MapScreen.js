@@ -6,8 +6,8 @@ import { SafeAreaView } from 'react-navigation';
 
 export const MapScreen = ({ navigation }) => {
     return(
-        <View>
+        <SafeAreaView>
             <Text>Map</Text>
-        </View>
+        </SafeAreaView>
     )
 }
