@@ -7,11 +7,13 @@ import HomeScreen from '../Pages/HomeScreen';
 import ProfileScreen from '../Pages/ProfileScreen';
 import QuestionHomeScreen from '../Pages/QuestionHomeScreen';
 import QuestionScreen from '../Pages/QuestionScreen';
+import { MapScreen } from '../Pages/MapScreen';
+
 // import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Tab = createBottomTabNavigator();
 
-// Don't foget to add it here as well! 
+// Don't foget to add it here as well!
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator screenOptions={{
@@ -19,6 +21,7 @@ const BottomTabNavigator = () => {
     }}>
         {/* Name it whatever you want, component is the name that you put above */}
       <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name = "Map" component={MapScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
       <Tab.Screen name="Quiz" component={QuestionHomeScreen} />
       <Tab.Screen name="QuestionScreen" component={QuestionScreen} options={{
