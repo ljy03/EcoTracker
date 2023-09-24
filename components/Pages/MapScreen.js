@@ -1,16 +1,16 @@
 
-import { StyleSheet } from 'react-native';
-import React, { useState, useEffect } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text } from 'react-native';
+import MapView, { Callout, Marker } from 'react-native-maps';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 export const MapScreen = ({ navigation }) => {
     const [location, setLocation] = useState(null);
     const [parks, setParks] = useState([]);
+    const mapRef = React.useRef(null);
 
     useEffect(() => {
         const fetchLocationAndParks = async () => {
@@ -22,6 +22,13 @@ export const MapScreen = ({ navigation }) => {
 
             let currentLocation = await Location.getCurrentPositionAsync({});
             setLocation(currentLocation.coords);
+
+            mapRef.current?.animateToRegion({
+                latitude: currentLocation.coords.latitude,
+                longitude: currentLocation.coords.longitude,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+            });
 
             const nearbyParks = await fetchParks(currentLocation.coords);
             setParks(nearbyParks);
@@ -35,9 +42,10 @@ export const MapScreen = ({ navigation }) => {
             {/* <GooglePlacesAutocomplete
                 // ... your existing code
             /> */}
-            <MapView 
+            <MapView
+                ref = {mapRef}
                 style={styles.map}
-                initialRegion={{
+                region ={{
                     latitude: location?.latitude || 37.78825,
                     longitude: location?.longitude || -122.4324,
                     latitudeDelta: 0.0922,
@@ -47,10 +55,21 @@ export const MapScreen = ({ navigation }) => {
             >
                 {parks.map((park, index) => (
                     <Marker
-                        key={index}
+                        key={park.place_id}
                         coordinate={{ latitude: park.lat, longitude: park.lng }}
                         title={park.name}
-                    />
+                    >
+                        <Callout>
+                            <SafeAreaView style={{ width: 250, height: 150 }}>
+                                    <Text>{park.name}</Text>
+                                    <Text>{park.address}</Text>
+                                    <Text>{park.phone}</Text>
+                                    <Text>{park.website}</Text>
+                                    <Text>{park.review}</Text>
+                            </SafeAreaView>
+                        </Callout>
+
+                    </Marker>
                 ))}
             </MapView>
         </SafeAreaView>
@@ -64,20 +83,44 @@ const fetchParks = async (coords) => {
     const response = await fetch(url);
     const data = await response.json();
 
-    return data.results.map(park => ({
+    const parks = data.results.map(park => ({
         lat: park.geometry.location.lat,
         lng: park.geometry.location.lng,
-        name: park.name
+        name: park.name,
+        place_id: park.place_id
     }));
+    limitedParks = parks.slice(0, 10)
+    // Fetch details for each park
+    const detailedParks = await Promise.all(limitedParks.map(async park => {
+        const detailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${park.place_id}&fields=name,formatted_address,formatted_phone_number,website,review&key=${apiKey}`;
+        const detailsResponse = await fetch(detailsUrl);
+        const detailsData = await detailsResponse.json();
+
+        return {
+            ...park,
+            address: detailsData.result.formatted_address,
+            phone: detailsData.result.formatted_phone_number,
+            website: detailsData.result.website,
+            review: detailsData.result.reviews ? detailsData.result.reviews[0].text : null
+        };
+    }));
+
+    return detailedParks;
 };
+
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      marginTop: 50,
+        flex: 1,
     },
     map: {
-      width: '100%',
-      height: '100%',
+        width: '100%',
+        height: '100%',
+    },
+    calloutView: {
+        
+    },
+    calloutTitle: {
+        fontWeight: 'bold',
     },
   });
