@@ -1,19 +1,27 @@
 import { Dimensions } from "react-native";
-import QuestionScreen from "./QuestionScreen.js";
+import "./QuestionScreen.js";
 import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
+import './HomeScreen.js'
 // import { useNavigation } from '@react-navigation/native';
 
 
 import { Button, Alert } from "react-native";
 
 export default function QuestionHomeScreen({ navigation }) {
+  global.completedQuiz = false;
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Quiz</Text>
       <TouchableHighlight style={styles.buttonStyling}>
 				<Button
           color="green"
-          onPress={() => navigation.navigate("QuestionScreen")}
+          onPress={() => {
+            if (global.completedQuiz == false) {
+              navigation.navigate("QuestionScreen")
+            } else {
+              Alert.alert("hmm...", "i think you may have already completed the quiz for today. try again tomrorrow")
+            }
+          }}
           title="Start Quiz"
         />
         </TouchableHighlight>

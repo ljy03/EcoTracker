@@ -5,7 +5,7 @@ import { View, Text, Button, Image, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 
 const HomeScreen = ({ navigation }) => {
-  let points = 60;
+  global.points = 60;
 
   return (
     <SafeAreaView style={styles.container}>
