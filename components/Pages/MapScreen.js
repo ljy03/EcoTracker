@@ -17,7 +17,7 @@ export const MapScreen = ({ navigation }) => {
                     console.log(data, details);
                 }}
                 query={{
-                    key: 'AIzaSyBpzps0uM3Rca6vZ7zICaPejuvZmyMtN78',
+                    key: '',
                     language: 'en',
                 }}
                 styles={{
