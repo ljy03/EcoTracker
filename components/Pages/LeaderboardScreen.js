@@ -3,7 +3,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 
-const ProfileScreen = ({ navigation }) => {
+const LeaderboardScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>User Profile</Text>
@@ -17,4 +17,4 @@ const ProfileScreen = ({ navigation }) => {
   );
 };
 
-export default ProfileScreen;
+export default LeaderboardScreen;
