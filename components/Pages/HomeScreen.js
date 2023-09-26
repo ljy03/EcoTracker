@@ -1,27 +1,34 @@
+// Imports
 import React, { useState } from "react";
 import { View, Text, Button, Image, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-navigation";
+import TaskBar from "./Task/taskBar"
+import ProgressBar from "./Task/progressBar";
 
+// Edit this list of tasks!
 const tasks = [
   "Pick up 5 pieces of trash",
   "Do this",
-  "And this",
-  "Don't forget this",
-  "Also this"
-]
-const HomeScreen = ({ navigation }) => {
-  const [taskAmounts, setTaskAmounts] = useState([5, 4, 3, 2, 1]);
+  
+  
+];
 
+const HomeScreen = ({ navigation }) => {
+  // All the task amounts
+  const [taskAmounts, setTaskAmounts] = useState([5, 4,]); // Change this also if you add/remove a task!
+
+  // Decrease Amount Function
   const decreaseAmount = (index) => {
-    if (taskAmounts[index] > 0) {
+    if (taskAmounts[index] > 0) { // Checks if the amount of the task is 0
       const newAmounts = [...taskAmounts];
       newAmounts[index] -= 1;
       setTaskAmounts(newAmounts);
     }
   };
 
-  global.points = 60; // Assuming global.points is defined elsewhere
+  global.points = 60;
 
+  // Tree
   const getTreeImage = () => {
     if (points <= 10) {
       return "http://res.freestockphotos.biz/pictures/15/15924-illustration-of-a-small-cartoon-tree-pv.png";
@@ -38,28 +45,32 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <Image
         source={{
-          uri: "https://cdn-icons-png.flaticon.com/512/6915/6915987.png",
+          uri: "https://cdn-icons-png.flaticon.com/512/6915/6915987.png", // Profile Picture
         }}
         style={styles.pfp}
       ></Image>
-      <Text style={styles.text}>HOME PAGE</Text>
-      {taskAmounts.map((amount, index) => (
-        <Text
-          key={index}
-          onPress={() => decreaseAmount(index)}
-          style={styles.tasks}
-        >
-         #{index + 1} - {tasks[index]} {amount} time{amount > 1 ? "s" : ""}
-        </Text>
-      ))}
-      <Text />
+      
+      {/* Header */}
+      <Text style={styles.text}>HOME PAGE</Text>  
 
+      {/* Task Bar */}
+      <TaskBar
+        tasks={tasks}
+        taskAmounts={taskAmounts}
+        onDecreaseAmount={decreaseAmount}
+      />
+
+      {/* Progress Bar */}
+      <ProgressBar tasks={tasks} taskAmounts={taskAmounts} />
+
+      {/* Tree Image */}
       <Image
         source={{
           uri: getTreeImage(),
         }}
         style={styles.image}
       ></Image>
+
     </SafeAreaView>
   );
 };
@@ -79,6 +90,7 @@ const styles = StyleSheet.create({
     height: "60%",
     width: "60%",
     alignSelf: "center",
+    marginTop: -60,
   },
   pfp: {
     height: 50,
@@ -88,7 +100,7 @@ const styles = StyleSheet.create({
   },
   tasks: {
     fontSize: 20,
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
     marginLeft: 20,
   },
 });
