@@ -36,7 +36,7 @@ const HomeScreen = ({ navigation }) => {
       return "http://res.freestockphotos.biz/pictures/15/15919-illustration-of-a-small-cartoon-tree-pv.png";
     } else if (points <= 60) {
       return "http://res.freestockphotos.biz/pictures/15/15922-illustration-of-a-small-cartoon-tree-pv.png";
-    } else if (points <= 100) {
+    } else {
       return "http://res.freestockphotos.biz/pictures/15/15932-illustration-of-a-small-cartoon-tree-pv.png";
     }
   };
