@@ -1,25 +1,28 @@
 // Imports
 import React, { useState } from "react";
-import { View, Text, Button, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  Image,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
 import { SafeAreaView } from "react-navigation";
-import TaskBar from "./Task/taskBar"
+import TaskBar from "./Task/taskBar";
 import ProgressBar from "./Task/progressBar";
 
 // Edit this list of tasks!
-const tasks = [
-  "Pick up 5 pieces of trash",
-  "Do this",
-  
-  
-];
+const tasks = ["Pick up 5 pieces of trash", "Do this"];
 
 const HomeScreen = ({ navigation }) => {
   // All the task amounts
-  const [taskAmounts, setTaskAmounts] = useState([5, 4,]); // Change this also if you add/remove a task!
+  const [taskAmounts, setTaskAmounts] = useState([5, 4]); // Change this also if you add/remove a task!
 
   // Decrease Amount Function
   const decreaseAmount = (index) => {
-    if (taskAmounts[index] > 0) { // Checks if the amount of the task is 0
+    if (taskAmounts[index] > 0) {
+      // Checks if the amount of the task is 0
       const newAmounts = [...taskAmounts];
       newAmounts[index] -= 1;
       setTaskAmounts(newAmounts);
@@ -43,34 +46,41 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <ImageBackground
+        source={{
+          uri: "https://img.freepik.com/free-vector/detailed-jungle-background_23-2148953379.jpg",
+        }}
+        style={styles.background}
+        resizeMode="cover"
+      >
       <Image
         source={{
-          uri: "https://cdn-icons-png.flaticon.com/512/6915/6915987.png", // Profile Picture
+          uri: "https://cdn-icons-png.flaticon.com/512/64/64572.png", // Profile Picture
         }}
         style={styles.pfp}
       ></Image>
-      
-      {/* Header */}
-      <Text style={styles.text}>HOME PAGE</Text>  
 
-      {/* Task Bar */}
-      <TaskBar
-        tasks={tasks}
-        taskAmounts={taskAmounts}
-        onDecreaseAmount={decreaseAmount}
-      />
+        {/* Header */}
+        <Text style={styles.text}>HOME PAGE</Text>
 
-      {/* Progress Bar */}
-      <ProgressBar tasks={tasks} taskAmounts={taskAmounts} />
+        {/* Task Bar */}
+        <TaskBar
+          tasks={tasks}
+          taskAmounts={taskAmounts}
+          onDecreaseAmount={decreaseAmount}
+        />
 
-      {/* Tree Image */}
-      <Image
-        source={{
-          uri: getTreeImage(),
-        }}
-        style={styles.image}
-      ></Image>
+        {/* Progress Bar */}
+        <ProgressBar tasks={tasks} taskAmounts={taskAmounts} />
 
+        {/* Tree Image */}
+        <Image
+          source={{
+            uri: getTreeImage(),
+          }}
+          style={styles.image}
+        ></Image>
+      </ImageBackground>
     </SafeAreaView>
   );
 };
@@ -79,12 +89,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    marginTop: "1%",
   },
   text: {
     padding: 10,
     fontSize: 50,
     fontWeight: "bold",
+    alignSelf: 'center',
+    color: 'teal',
   },
   image: {
     height: "60%",
@@ -96,12 +107,17 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     alignSelf: "flex-end",
-    marginRight: 10,
+    marginTop: 40,
+    marginRight: 5,
   },
   tasks: {
     fontSize: 20,
     alignSelf: "flex-start",
     marginLeft: 20,
+  },
+  background: {
+    width: "100%",
+    height: "100%",
   },
 });
 

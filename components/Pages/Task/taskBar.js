@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 10,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "white",
     borderRadius: 5,
   },
   header: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   taskItem: {
     padding: 10,
     borderBottomWidth: 1,
-    borderColor: "#ddd",
+    borderColor: "white",
   },
 });
 
