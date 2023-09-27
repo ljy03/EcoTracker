@@ -1,11 +1,10 @@
 
 import * as Location from 'expo-location';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Image  } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-
+import customMarker from '../../assets/pine-tree_circle.png'
 
 const MapScreen = ({ navigation }) => {
     const [location, setLocation] = useState(null);
@@ -55,11 +54,13 @@ const MapScreen = ({ navigation }) => {
             >
                 {parks.map((park, index) => (
                     <Marker
-                        key={park.place_id}
+                        key={park.place_id+index}
                         coordinate={{ latitude: park.lat, longitude: park.lng }}
                         title={park.name}
                         onPress={() => navigation.navigate('DetailsScreen', park)}
-                    />
+                    >
+                        <Image source={customMarker} style={{ width: 23, height: 23 }} />
+                    </Marker>
                 ))}
             </MapView>
         </SafeAreaView>
@@ -67,7 +68,7 @@ const MapScreen = ({ navigation }) => {
 };
 
 const fetchParks = async (coords) => {
-    const apiKey = ''; // Replace with your API key
+    const apiKey = 'AIzaSyBpzps0uM3Rca6vZ7zICaPejuvZmyMtN78'; // Replace with your API key
     const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${coords.latitude},${coords.longitude}&radius=2000&type=park&key=${apiKey}&language=en`;
 
     const response = await fetch(url);
@@ -86,16 +87,13 @@ const fetchParks = async (coords) => {
         const detailsResponse = await fetch(detailsUrl);
         const detailsData = await detailsResponse.json();
 
+        
         return {
             ...park,
             address: detailsData.result.formatted_address,
             phone: detailsData.result.formatted_phone_number,
-            website: detailsData.result.website,
-            review: detailsData.result.reviews ? detailsData.result.reviews[0].text : null
         };
     }));
-
-    print(detailedParks)
 
     return detailedParks;
 };

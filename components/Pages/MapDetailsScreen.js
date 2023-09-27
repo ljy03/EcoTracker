@@ -1,25 +1,36 @@
-import React, { useState }  from 'react';
-import { Button, Linking, SafeAreaView, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { Button, SafeAreaView, StyleSheet, Text, TouchableOpacity, ImageBackground } from 'react-native';
 
-function DetailsScreen({ route }) {
-  const { name, address, phone} = route.params;
+function DetailsScreen({ route, navigation }) {
+  const { name, address, phone } = route.params;
 
   const [hasPickedGarbage, setHasPickedGarbage] = useState(false);
   const [hasJogged, setHasJogged] = useState(false);
 
   return (
-    <SafeAreaView style={{ flex: 1, padding: 20 }}>
-      <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{name}</Text>
-      <Text style={{ marginTop: 10 }}>{address}</Text>
-      <Text style={{ marginTop: 10 }}>{phone}</Text>
+    <SafeAreaView style={styles.container}>
+      <ImageBackground
+        source={{
+          uri: "https://img.freepik.com/free-vector/detailed-jungle-background_23-2148953379.jpg",
+        }}
+        style={styles.background}
+        resizeMode="cover"
+      >
+        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.text}>{address}</Text>
+        <Text style={styles.text}>{phone}</Text>
 
-      <TouchableOpacity style={styles.button} onPress={() => setHasPickedGarbage(!hasPickedGarbage)}>
-        <Text>{hasPickedGarbage ? '✅' : '❌'} Have you picked up garbage?</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => setHasPickedGarbage(!hasPickedGarbage)}>
+          <Text>{hasPickedGarbage ? '✅' : '❌'} Have you picked up garbage?</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => setHasJogged(!hasJogged)}>
-        <Text>{hasJogged ? '✅' : '❌'} Have you jogged?</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => setHasJogged(!hasJogged)}>
+          <Text>{hasJogged ? '✅' : '❌'} Have you jogged?</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.goBackButton} onPress={() => navigation.goBack()}>
+            <Text style={styles.goBackText}>Go Back</Text>
+        </TouchableOpacity>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
@@ -27,18 +38,54 @@ function DetailsScreen({ route }) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+    },
+    background: {
+      flex: 1,
       justifyContent: 'center',
-      alignItems: 'center',
+      paddingHorizontal: 20,
+    },
+    title: {
+      fontSize: 30,
+      fontWeight: 'bold',
+      marginBottom: 20,
+      color: '#fff',
+      textShadowColor: 'rgba(0, 0, 0, 0.75)',
+      textShadowOffset: { width: -1, height: 1 },
+      textShadowRadius: 10,
+    },
+    text: {
+      fontSize: 18,
+      marginTop: 10,
+      color: '#fff',
+      textShadowColor: 'rgba(0, 0, 0, 0.75)',
+      textShadowOffset: { width: -1, height: 1 },
+      textShadowRadius: 10,
     },
     button: {
-      margin: 10,
+      marginVertical: 10,
       padding: 15,
       borderColor: 'gray',
       borderWidth: 1,
-      borderRadius: 5,
+      borderRadius: 25,
       alignItems: 'center',
+      backgroundColor: 'rgba(255, 255, 255, 0.8)', // semi-transparent white
+    },
+    buttonText: {
+      fontSize: 16,
+      fontWeight: '600',
+    },
+    goBackButton: {
+        backgroundColor: '#4CAF50', // or any color you prefer
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 10,
+    },
+    goBackText: {
+        color: 'white',
+        fontSize: 16,
     },
   });
-  
 
 export default DetailsScreen;

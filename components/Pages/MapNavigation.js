@@ -8,7 +8,7 @@ function MapStack() {
   return (
     <Stack.Navigator initialRouteName="MapInitial">
       <Stack.Screen name="MapInitial" component={MapScreen} options={{animation: 'none', headerShown: false}}/>
-      <Stack.Screen name="DetailsScreen" component={DetailsScreen} options={{animation: 'none'}}/>
+      <Stack.Screen name="DetailsScreen" component={DetailsScreen} options={{animation: 'none' ,headerShown: false}}/>
     </Stack.Navigator>
   );
 }
