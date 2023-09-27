@@ -68,7 +68,7 @@ const MapScreen = ({ navigation }) => {
 };
 
 const fetchParks = async (coords) => {
-    const apiKey = 'AIzaSyBpzps0uM3Rca6vZ7zICaPejuvZmyMtN78'; // Replace with your API key
+    const apiKey = ''; // Replace with your API key
     const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${coords.latitude},${coords.longitude}&radius=2000&type=park&key=${apiKey}&language=en`;
 
     const response = await fetch(url);
