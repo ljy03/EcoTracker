@@ -1,13 +1,13 @@
 
 import * as Location from 'expo-location';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text } from 'react-native';
-import MapView, { Callout, Marker } from 'react-native-maps';
+import { StyleSheet } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 
-export const MapScreen = ({ navigation }) => {
+const MapScreen = ({ navigation }) => {
     const [location, setLocation] = useState(null);
     const [parks, setParks] = useState([]);
     const mapRef = React.useRef(null);
@@ -58,18 +58,8 @@ export const MapScreen = ({ navigation }) => {
                         key={park.place_id}
                         coordinate={{ latitude: park.lat, longitude: park.lng }}
                         title={park.name}
-                    >
-                        <Callout>
-                            <SafeAreaView style={{ width: 250, height: 150 }}>
-                                    <Text>{park.name}</Text>
-                                    <Text>{park.address}</Text>
-                                    <Text>{park.phone}</Text>
-                                    <Text>{park.website}</Text>
-                                    <Text>{park.review}</Text>
-                            </SafeAreaView>
-                        </Callout>
-
-                    </Marker>
+                        onPress={() => navigation.navigate('DetailsScreen', park)}
+                    />
                 ))}
             </MapView>
         </SafeAreaView>
@@ -78,7 +68,7 @@ export const MapScreen = ({ navigation }) => {
 
 const fetchParks = async (coords) => {
     const apiKey = ''; // Replace with your API key
-    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${coords.latitude},${coords.longitude}&radius=2000&type=park&key=${apiKey}`;
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${coords.latitude},${coords.longitude}&radius=2000&type=park&key=${apiKey}&language=en`;
 
     const response = await fetch(url);
     const data = await response.json();
@@ -105,6 +95,8 @@ const fetchParks = async (coords) => {
         };
     }));
 
+    print(detailedParks)
+
     return detailedParks;
 };
 
@@ -117,10 +109,6 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
-    calloutView: {
-        
-    },
-    calloutTitle: {
-        fontWeight: 'bold',
-    },
-  });
+});
+
+export default MapScreen

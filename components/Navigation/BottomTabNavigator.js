@@ -9,7 +9,7 @@ import HomeScreen from '../Pages/HomeScreen';
 import LeaderboardScreen from '../Pages/LeaderboardScreen';
 import QuestionHomeScreen from '../Pages/QuestionHomeScreen';
 import QuestionScreen from '../Pages/QuestionScreen';
-import { MapScreen } from '../Pages/MapScreen';
+import MapStack from '../Pages/MapNavigation';
 
 // import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -47,7 +47,7 @@ const BottomTabNavigator = () => {
     })}>
         {/* Name it whatever you want, component is the name that you put above */}
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name = "Map" component={MapScreen} />
+      <Tab.Screen name = "Map" component={MapStack} />
       <Tab.Screen name="Leaderboard" component={LeaderboardScreen} />
       <Tab.Screen name="Quiz" component={QuestionHomeScreen} />
       <Tab.Screen name="QuestionScreen" component={QuestionScreen} options={{
