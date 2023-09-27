@@ -7,12 +7,27 @@ import BottomTabNavigator from "../Navigation/BottomTabNavigator.js";
 import './HomeScreen.js'
 
 export default function QuestionScreen({ navigation }) {
-  const [counter, setCurrentCounter] = useState(0);
+  const shuffle = (array) => { 
+    for (let i = array.length - 1; i > 0; i--) { 
+      const j = Math.floor(Math.random() * (i + 1)); 
+      [array[i], array[j]] = [array[j], array[i]]; 
+    } 
+    return array; 
+  };
+
+  const [localPoints, setLocalPoints] = useState(global.points);
+  
+  const addPoint = () => {
+    global.points = global.points + 1;
+    setLocalPoints(global.points);
+  };
 
   useEffect(() => {
-    setCurrentCounter(0); // This will run once when the component mounts
-  }, []);
+    setLocalPoints(global.points);
+  }, [global.points]);
 
+  const [counter, setCurrentCounter] = useState(0);
+  const [array, setArray] = useState(shuffle([1, 2, 3, 4, 5, 6, 7, 8]));
   let screens = {
     1: {
       question: "What percentage of marine debris found from surface waters to deep-sea sediments does plastic make up?",
@@ -24,7 +39,7 @@ export default function QuestionScreen({ navigation }) {
     },
     2: {
       question: "What was the total bottle recycling rate for 2020?",
-      answer1: "27.2%%",
+      answer1: "27.2%",
       answer2: "13.3%",
       answer3: "5%",
       answer4: "22.5%",
@@ -80,22 +95,15 @@ export default function QuestionScreen({ navigation }) {
     },
   }
 
-  let array = [];
-  while (array.length < 5){
-    let newNumber = Math.floor(Math.random() * 8) + 1;
-    if (!array.includes(newNumber)) {
-      array.push(newNumber);
-    }
-  }
-
   async function questionAnswered(answerOfButtonPressed) {
     if (screens[array[counter]]["correctAnswer"] === answerOfButtonPressed) {
       Alert.alert('Correct', 'That was correct!');
-      global.points += 1;
+      addPoint();
+      console.log(global.points);
     } else {
       Alert.alert('Incorrect', 'That was incorrect!');
     }
-    if (counter === 4) {
+    if (counter === 7) {
       await new Promise(r=> setTimeout(r,1000));
       Alert.alert('Finished', 'Congrats, you finished the quiz!');
       global.completedQuiz = true;

@@ -1,5 +1,5 @@
 // Imports
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -18,6 +18,18 @@ const tasks = ["Pick up 5 pieces of trash", "Do this"];
 const HomeScreen = ({ navigation }) => {
   // All the task amounts
   const [taskAmounts, setTaskAmounts] = useState([5, 4]); // Change this also if you add/remove a task!
+  global.points = 60;
+
+  const [localPoints, setLocalPoints] = useState(global.points);
+  
+  const addPoint = () => {
+    global.points = global.points + 5;
+    setLocalPoints(global.points);
+  };
+
+  useEffect(() => {
+    setLocalPoints(global.points);
+  }, [global.points]);
 
   // Decrease Amount Function
   const decreaseAmount = (index) => {
@@ -26,18 +38,18 @@ const HomeScreen = ({ navigation }) => {
       const newAmounts = [...taskAmounts];
       newAmounts[index] -= 1;
       setTaskAmounts(newAmounts);
+      addPoint();
+      console.log(global.points);
     }
   };
 
-  global.points = 60;
-
   // Tree
   const getTreeImage = () => {
-    if (points <= 10) {
+    if (localPoints <= 10) {
       return "http://res.freestockphotos.biz/pictures/15/15924-illustration-of-a-small-cartoon-tree-pv.png";
-    } else if (points <= 30) {
+    } else if (localPoints <= 30) {
       return "http://res.freestockphotos.biz/pictures/15/15919-illustration-of-a-small-cartoon-tree-pv.png";
-    } else if (points <= 60) {
+    } else if (localPoints <= 60) {
       return "http://res.freestockphotos.biz/pictures/15/15922-illustration-of-a-small-cartoon-tree-pv.png";
     } else {
       return "http://res.freestockphotos.biz/pictures/15/15932-illustration-of-a-small-cartoon-tree-pv.png";
