@@ -6,7 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // Import all the pages here!
 import HomeScreen from '../Pages/HomeScreen';
-import LeaderboardScreen from '../Pages/LeaderboardScreen';
+import Chats from "../Pages/Chats";
 import QuestionHomeScreen from '../Pages/QuestionHomeScreen';
 import QuestionScreen from '../Pages/QuestionScreen';
 import MapStack from '../Pages/MapNavigation';
@@ -49,7 +49,7 @@ const BottomTabNavigator = () => {
         {/* Name it whatever you want, component is the name that you put above */}
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name = "Map" component={MapStack} />
-      <Tab.Screen name="Leaderboard" component={LeaderboardScreen} />
+      <Tab.Screen name="Chat" component={Chats} />
       <Tab.Screen name="Quiz" component={QuestionHomeScreen} />
       <Tab.Screen name="QuestionScreen" component={QuestionScreen} options={{
         tabBarButton: () => null,
