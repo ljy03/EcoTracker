@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import BottomTabNavigator from './components/Navigation/BottomTabNavigator';
 import QuestionScreen from './components/Pages/QuestionScreen.js';
 import QuestionHomeScreen from './components/Pages/QuestionHomeScreen.js';
+import Profile from './components/Pages/ProfileScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +20,7 @@ const App = () => {
         <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} />
         <Stack.Screen name="QuestionScreen" component={QuestionScreen} />
         <Stack.Screen name="QuestionHomeScreen" component={QuestionHomeScreen} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
       
     </NavigationContainer>

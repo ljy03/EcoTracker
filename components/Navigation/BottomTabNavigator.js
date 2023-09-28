@@ -10,6 +10,7 @@ import LeaderboardScreen from '../Pages/LeaderboardScreen';
 import QuestionHomeScreen from '../Pages/QuestionHomeScreen';
 import QuestionScreen from '../Pages/QuestionScreen';
 import MapStack from '../Pages/MapNavigation';
+import Profile from '../Pages/ProfileScreen';
 
 // import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -51,6 +52,10 @@ const BottomTabNavigator = () => {
       <Tab.Screen name="Leaderboard" component={LeaderboardScreen} />
       <Tab.Screen name="Quiz" component={QuestionHomeScreen} />
       <Tab.Screen name="QuestionScreen" component={QuestionScreen} options={{
+        tabBarButton: () => null,
+        tabBarVisible: false, // if you don't want to see the tab bar
+      }} />
+      <Tab.Screen name="Profile" component={Profile} options={{
         tabBarButton: () => null,
         tabBarVisible: false, // if you don't want to see the tab bar
       }} />

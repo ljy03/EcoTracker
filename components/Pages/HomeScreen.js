@@ -7,10 +7,12 @@ import {
   Image,
   StyleSheet,
   ImageBackground,
+  Pressable
 } from "react-native";
 import { SafeAreaView } from "react-navigation";
 import TaskBar from "./Task/taskBar";
 import ProgressBar from "./Task/progressBar";
+import Profile from "./ProfileScreen";
 
 // Edit this list of tasks!
 const tasks = ["Pick up 5 pieces of trash", "Do this"];
@@ -30,6 +32,8 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     setLocalPoints(global.points);
   }, [global.points]);
+
+
 
   // Decrease Amount Function
   const decreaseAmount = (index) => {
@@ -56,7 +60,12 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
+  const profilePage = () => {
+    navigation.navigate("Profile"); // Use the navigation prop to navigate to the "Profile" screen
+  };
+
   return (
+
     <SafeAreaView style={styles.container}>
       <ImageBackground
         source={{
@@ -64,13 +73,17 @@ const HomeScreen = ({ navigation }) => {
         }}
         style={styles.background}
         resizeMode="cover"
+        
       >
-      <Image
-        source={{
-          uri: "https://cdn-icons-png.flaticon.com/512/64/64572.png", // Profile Picture
-        }}
-        style={styles.pfp}
-      ></Image>
+      <Pressable onPress={profilePage}> 
+        <Image
+          source={{
+            uri: "https://cdn-icons-png.flaticon.com/512/64/64572.png", // Profile Picture
+          }}
+          style={styles.pfp}
+          
+        ></Image>
+      </Pressable>
 
         {/* Header */}
         <Text style={styles.text}>HOME PAGE</Text>
