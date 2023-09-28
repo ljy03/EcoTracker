@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Dimensions } from "react-native";
-import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
+import { StyleSheet, Text, View, TouchableHighlight, ImageBackground, SafeAreaView } from "react-native";
 import QuestionHomeScreen from "./QuestionHomeScreen.js";
 import { Button, Alert } from "react-native";
 import BottomTabNavigator from "../Navigation/BottomTabNavigator.js";
-import './HomeScreen.js'
+import tree from '../../assets/tree.png';
+import './HomeScreen.js';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export default function QuestionScreen({ navigation }) {
   const shuffle = (array) => { 
@@ -16,6 +18,8 @@ export default function QuestionScreen({ navigation }) {
   };
 
   const [localPoints, setLocalPoints] = useState(global.points);
+
+  const [perGamePoints, setPerGamePoints] = useState(0);
   
   const addPoint = () => {
     global.points = global.points + 1;
@@ -78,12 +82,12 @@ export default function QuestionScreen({ navigation }) {
       correctAnswer: "answer1",
     },
     7: {
-      question: "The total bottle recycling rate for 2019 was 28.7%. What was it in 2020?",
-      answer1: "25.6%",
-      answer2: "29.5%",
-      answer3: "28.4%",
-      answer4: "27.2%",
-      correctAnswer: "answer4",
+      question: "What was the recyling rate in 2021 for paper?",
+      answer1: "42",
+      answer2: "68%",
+      answer3: "54%",
+      answer4: "77%",
+      correctAnswer: "answer2",
     },
     8: {
       question: "On average, how many pounds of waste per person goes into a landfill annually? ",
@@ -99,13 +103,14 @@ export default function QuestionScreen({ navigation }) {
     if (screens[array[counter]]["correctAnswer"] === answerOfButtonPressed) {
       Alert.alert('Correct', 'That was correct!');
       addPoint();
-      console.log(global.points);
+      setPerGamePoints(perGamePoints + 1);
     } else {
       Alert.alert('Incorrect', 'That was incorrect!');
     }
     if (counter === 7) {
-      await new Promise(r=> setTimeout(r,1000));
-      Alert.alert('Finished', 'Congrats, you finished the quiz!');
+      await new Promise(r => setTimeout(r, 1000));
+      const congratsMessage = "Congrats, you finished the quiz with " + perGamePoints + " points!";
+      Alert.alert('Finished', congratsMessage);
       global.completedQuiz = true;
       navigation.navigate("Quiz");
     } else {
@@ -114,9 +119,15 @@ export default function QuestionScreen({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
-			<Text style={styles.header}>Quiz</Text>
-			<Text>{screens[array[counter]]["question"]}</Text>
+    <SafeAreaView style={styles.container}>
+      <ImageBackground
+        source={tree}
+        style={styles.background}
+        resizeMode="cover"
+        
+      >
+			<Text style={styles.text}>QUIZ</Text>
+			<Text style={styles.question}>{screens[array[counter]]["question"]}</Text>
 			
 			<TouchableHighlight style={styles.buttonStyling}>
         <Button
@@ -146,7 +157,8 @@ export default function QuestionScreen({ navigation }) {
           title={screens[array[counter]]["answer4"]}
         />
         </TouchableHighlight>
-    </View>
+      </ImageBackground>
+    </SafeAreaView>
   );
 }
 
@@ -164,8 +176,28 @@ const styles = StyleSheet.create({
     fontSize: Dimensions.get("window").width / 10,
   },
   buttonStyling: {
-    width: "80%",
 		margin: Dimensions.get("window").height / 20,
 		alignItems: "center",
+  },
+  background: {
+    width: "100%",
+    height: "100%",
+  },
+  text: {
+    margin: Dimensions.get("window").width / 5,
+    padding: 10,
+    fontSize: 50,
+    fontWeight: "bold",
+    alignSelf: 'center',
+    color: 'teal',
+  },
+  question: {
+    fontWeight: 'bold',
+    fontSize: 15,
+    marginVertical: 0,
+    marginHorizontal: Dimensions.get("window").width / 20,
+    backgroundColor: "white",
+    padding: Dimensions.get("window").width / 30,
+    alignSelf: 'center',
   },
 });
