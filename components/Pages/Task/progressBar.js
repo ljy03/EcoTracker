@@ -1,16 +1,14 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-// Progress Bar Main Component
 const ProgressBar = ({ tasks, taskAmounts }) => {
-  // Calculate the total number of tasks
-  const totalTasks = tasks.length;
 
-  // Count the number of completed tasks by filtering taskAmounts where amount is 0
-  const completedTasks = taskAmounts.filter((amount) => amount === 0).length;
-
-  // Calculate the progress as a percentage
-  const progress = (completedTasks / totalTasks) * 100;
+  const [initialTotalTasks, setInitialTotalTasks] = useState(0);
+  useEffect(() => {
+    setInitialTotalTasks(tasks.length);
+  }, []);
+  const completedTasks = initialTotalTasks - tasks.length;
+  const progress = (completedTasks / initialTotalTasks) * 100;
 
   return (
     <View style={styles.container}>
@@ -23,9 +21,9 @@ const ProgressBar = ({ tasks, taskAmounts }) => {
         <View style={[styles.progressBar, { width: `${progress}%` }]}></View>
       </View>
 
-      {/* Text displaying the number of completed tasks out of total tasks */}
+      {/* Text displaying the number of completed tasks out of initial total tasks */}
       <Text style={styles.progressText}>
-        {completedTasks}/{totalTasks} tasks completed
+        {completedTasks}/{initialTotalTasks} tasks completed
       </Text>
     </View>
   );
