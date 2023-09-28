@@ -1,24 +1,20 @@
 // Imports
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  View,
-  Text,
-  Button,
   Image,
-  StyleSheet,
   ImageBackground,
-  Pressable
+  Pressable,
+  StyleSheet,
+  Text
 } from "react-native";
 import { SafeAreaView } from "react-navigation";
-import TaskBar from "./Task/taskBar";
 import ProgressBar from "./Task/progressBar";
-import Profile from "./ProfileScreen";
+import TaskBar from "./Task/taskBar";
 
 // Edit this list of tasks!
-const tasks = ["Pick up 5 pieces of trash", "Do this"];
-
 const HomeScreen = ({ navigation }) => {
   // All the task amounts
+  const [tasks, setTasks] = useState(["Pick up 5 pieces of trash", "Do this"]); // an array of task objects
   const [taskAmounts, setTaskAmounts] = useState([5, 4]); // Change this also if you add/remove a task!
   global.points = 60;
 
@@ -33,19 +29,26 @@ const HomeScreen = ({ navigation }) => {
     setLocalPoints(global.points);
   }, [global.points]);
 
-
-
   // Decrease Amount Function
   const decreaseAmount = (index) => {
-    if (taskAmounts[index] > 0) {
-      // Checks if the amount of the task is 0
-      const newAmounts = [...taskAmounts];
+    const newAmounts = [...taskAmounts];
+    const newTasks = [...tasks];
+  
+    if (newAmounts[index] > 1) {
+      // Decrease the task amount by 1 if it's greater than 1
       newAmounts[index] -= 1;
-      setTaskAmounts(newAmounts);
-      addPoint();
-      console.log(global.points);
+    } else {
+      // Remove the task from both arrays if its amount is 1 (because after decreasing it will become 0)
+      newAmounts.splice(index, 1);
+      newTasks.splice(index, 1);
     }
+  
+    setTaskAmounts(newAmounts); 
+    setTasks(newTasks); 
+    addPoint(); 
+    console.log(global.points); 
   };
+  
 
   // Tree
   const getTreeImage = () => {
