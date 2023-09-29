@@ -6,7 +6,7 @@ import { Avatar, Bubble, SystemMessage, Message, MessageText } from 'react-nativ
 export const renderAvatar = (props) => (
   <Avatar
     {...props}
-    containerStyle={{ left: {}, right: {} }}
+    containerStyle={{ left: {marginVertical: 20}, right: {} }}
     imageStyle={{ left: { borderWidth: 3, borderColor: 'blue' }, right: {} }}
   />
 );
@@ -15,25 +15,25 @@ export const renderBubble = (props) => (
   <Bubble
     {...props}
     containerStyle={{
-      left: {},
+      left: {marginVertical: 20},
       right: {},
     }}
     wrapperStyle={{
-      left: { borderColor: 'black', borderWidth: 2 },
+      left: {},
       right: {},
     }}
     bottomContainerStyle={{
-      left: { borderColor: 'white', borderWidth: 4 },
+      left: {},
       right: {},
     }}
     tickStyle={{}}
     usernameStyle={{ color: 'black', fontWeight: '100' }}
     containerToNextStyle={{
-      left: { borderColor: 'black', borderWidth: 4 },
+      left: {},
       right: {},
     }}
     containerToPreviousStyle={{
-      left: { borderColor: 'mediumorchid', borderWidth: 4 },
+      left: {},
       right: {},
     }}
   />
@@ -73,16 +73,6 @@ export const renderMessageText = (props) => (
       left: { color: 'black' },
       right: { color: 'black' },
     }}
-    customTextStyle={{ fontSize: 24, lineHeight: 24 }}
+    customTextStyle={{ fontSize: 18, fontFamily: 'Roboto', lineHeight: 18 }}
   />
-);
-
-export const renderCustomView = ({ user }) => (
-  <View style={{ minHeight: 20, alignItems: 'center' }}>
-    <Text>
-      Current user:
-      {user.name}
-    </Text>
-    <Text>From CustomView</Text>
-  </View>
 );

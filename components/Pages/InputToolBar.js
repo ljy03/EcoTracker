@@ -31,7 +31,7 @@ export const renderActions = (props) => (
       <Image
         style={{ width: 32, height: 32 }}
         source={{
-          uri: 'https://static.thenounproject.com/png/5272348-200.png',
+          uri: 'https://cdn.icon-icons.com/icons2/1919/PNG/512/cancelsymbolinsideacircle_121983.png',
         }}
       />
     )}

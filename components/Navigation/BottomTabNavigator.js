@@ -34,8 +34,8 @@ const BottomTabNavigator = () => {
             iconName = focused ? 'help-outline' : 'help-outline';
         } else if (route.name === 'Map') {
           iconName = focused ? 'navigate-outline' : 'navigate-outline';
-        } else if (route.name === 'Leaderboard') {
-        iconName = focused ? 'podium-outline' : 'podium-outline';
+        } else if (route.name === 'Chat') {
+          iconName = focused ? 'chatbox-outline' : 'chatbox-outline';
         }
 
         return <Ionicons name={iconName} size={size} color={color} />;
