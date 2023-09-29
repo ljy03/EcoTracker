@@ -7,7 +7,7 @@ export const renderAvatar = (props) => (
   <Avatar
     {...props}
     containerStyle={{ left: {marginVertical: 20}, right: {} }}
-    imageStyle={{ left: { borderWidth: 3, borderColor: 'blue' }, right: {} }}
+    imageStyle={{ left: {}, right: {} }}
   />
 );
 
@@ -42,7 +42,7 @@ export const renderBubble = (props) => (
 export const renderSystemMessage = (props) => (
   <SystemMessage
     {...props}
-    containerStyle={{ backgroundColor: 'white' }}
+    containerStyle={{ backgroundColor: '#edfced' }}
     wrapperStyle={{ borderWidth: 10, borderColor: 'white' }}
     textStyle={{ color: 'crimson', fontWeight: '900' }}
   />
@@ -52,8 +52,8 @@ export const renderMessage = (props) => (
   <Message
     {...props}
     containerStyle={{
-      left: { backgroundColor: 'white' },
-      right: { backgroundColor: 'white' },
+      left: { backgroundColor: '#edfced' },
+      right: { backgroundColor: '#edfced' },
     }}
   />
 );
