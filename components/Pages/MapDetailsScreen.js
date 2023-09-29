@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Button, SafeAreaView, StyleSheet, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import useTasks from '../Hooks/useTasks';
 
 function DetailsScreen({ route, navigation }) {
   const { name, address, phone } = route.params;
+  const { tasks, taskAmounts, decreaseAmount } = useTasks();
 
   const [hasPickedGarbage, setHasPickedGarbage] = useState(false);
   const [hasJogged, setHasJogged] = useState(false);
@@ -20,7 +22,16 @@ function DetailsScreen({ route, navigation }) {
         <Text style={styles.text}>{address}</Text>
         <Text style={styles.text}>{phone}</Text>
 
-        <TouchableOpacity style={styles.button} onPress={() => setHasPickedGarbage(!hasPickedGarbage)}>
+        <TouchableOpacity 
+          style={styles.button} 
+          onPress={() => {
+            if(!hasPickedGarbage){
+              decreaseAmount(0);
+              setHasPickedGarbage(true);
+            }
+          }}
+          disabled={hasPickedGarbage}
+        >
           <Text>{hasPickedGarbage ? '✅' : '❌'} Have you picked up garbage?</Text>
         </TouchableOpacity>
 

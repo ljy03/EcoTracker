@@ -1,9 +1,10 @@
 // Imports
-import React from "react";
+import React, {useReducer, useEffect} from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 // Task Bar Main Component
 const TaskBar = ({ tasks, taskAmounts, onDecreaseAmount }) => {
+
   return (
     <View style={styles.container}>
       {/* Header for the Task Bar */}

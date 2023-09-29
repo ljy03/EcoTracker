@@ -1,5 +1,5 @@
 // Imports
-import React, { useEffect, useState } from "react";
+import React, { useReducer } from "react";
 import {
   Image,
   ImageBackground,
@@ -8,47 +8,55 @@ import {
   Text
 } from "react-native";
 import { SafeAreaView } from "react-navigation";
+import usePoints from "../Hooks/usePoints";
+import useTasks from '../Hooks/useTasks';
 import ProgressBar from "./Task/progressBar";
 import TaskBar from "./Task/taskBar";
 
 // Edit this list of tasks!
 const HomeScreen = ({ navigation }) => {
   // All the task amounts
-  const [tasks, setTasks] = useState(["Pick up 5 pieces of litter", "Plant a tree", "Don't eat a meal with meat", "Read about enviornmental issues"]); // an array of task objects
-  const [taskAmounts, setTaskAmounts] = useState([5, 2, 5, 10]); // Change this also if you add/remove a task!
-  global.points = 60;
+  // const [tasks, setTasks] = useState(["Pick up 5 pieces of litter", "Plant a tree", "Don't eat a meal with meat", "Read about enviornmental issues"]); // an array of task objects
+  // const [taskAmounts, setTaskAmounts] = useState([5, 2, 5, 10]); // Change this also if you add/remove a task!
+  // global.points = 60;
 
-  const [localPoints, setLocalPoints] = useState(global.points);
+  // const [localPoints, setLocalPoints] = useState(global.points);
   
-  const addPoint = () => {
-    global.points = global.points + 5;
-    setLocalPoints(global.points);
-  };
+  // const addPoint = () => {
+  //   global.points = global.points + 5;
+  //   setLocalPoints(global.points);
+  // };
 
-  useEffect(() => {
-    setLocalPoints(global.points);
-  }, [global.points]);
+  // useEffect(() => {
+  //   setLocalPoints(global.points);
+  // }, [global.points]);
 
   // Decrease Amount Function
-  const decreaseAmount = (index) => {
-    const newAmounts = [...taskAmounts];
-    const newTasks = [...tasks];
+  // const decreaseAmount = (index) => {
+  //   const newAmounts = [...taskAmounts];
+  //   const newTasks = [...tasks];
   
-    if (newAmounts[index] > 1) {
-      // Decrease the task amount by 1 if it's greater than 1
-      newAmounts[index] -= 1;
-    } else {
-      // Remove the task from both arrays if its amount is 1 (because after decreasing it will become 0)
-      newAmounts.splice(index, 1);
-      newTasks.splice(index, 1);
-    }
+  //   if (newAmounts[index] > 1) {
+  //     // Decrease the task amount by 1 if it's greater than 1
+  //     newAmounts[index] -= 1;
+  //   } else {
+  //     // Remove the task from both arrays if its amount is 1 (because after decreasing it will become 0)
+  //     newAmounts.splice(index, 1);
+  //     newTasks.splice(index, 1);
+  //   }
   
-    setTaskAmounts(newAmounts); 
-    setTasks(newTasks); 
-    addPoint(); 
-    console.log(global.points); 
-  };
-  
+  //   setTaskAmounts(newAmounts); 
+  //   setTasks(newTasks); 
+  //   addPoint(); 
+  //   console.log(global.points); 
+  // };
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+  const {localPoints, addPoint } = usePoints()
+  const { tasks, taskAmounts, decreaseAmount } = useTasks();
+
+  console.log(localPoints)
+  console.log(taskAmounts)
 
   // Tree
   const getTreeImage = () => {
@@ -78,6 +86,7 @@ const HomeScreen = ({ navigation }) => {
         resizeMode="cover"
         
       >
+
       <Pressable onPress={profilePage}> 
         <Image
           source={{
@@ -86,6 +95,10 @@ const HomeScreen = ({ navigation }) => {
           style={styles.pfp}
           
         ></Image>
+      </Pressable>
+
+      <Pressable onPress={forceUpdate} style={styles.updateButton}>
+          <Text style={forceUpdate}>Update</Text>
       </Pressable>
 
         {/* Header */}
@@ -108,6 +121,7 @@ const HomeScreen = ({ navigation }) => {
           }}
           style={styles.image}
         ></Image>
+
       </ImageBackground>
     </SafeAreaView>
   );
@@ -138,6 +152,18 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginRight: 5,
     borderRadius: 75,
+  },
+  updateButton: {
+    position: 'absolute',
+    top: 40,
+    left: 5,
+    backgroundColor: 'teal', // or any color you prefer
+    padding: 10,
+    borderRadius: 25,
+    height: 50,
+    width: 50,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   tasks: {
     fontSize: 20,

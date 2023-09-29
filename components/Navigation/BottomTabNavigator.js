@@ -48,7 +48,7 @@ const BottomTabNavigator = () => {
     })}>
         {/* Name it whatever you want, component is the name that you put above */}
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name = "Map" component={MapStack} />
+      <Tab.Screen name = "Map" component={MapStack}/>
       <Tab.Screen name="Chat" component={Chats} />
       <Tab.Screen name="Quiz" component={QuestionHomeScreen} />
       <Tab.Screen name="QuestionScreen" component={QuestionScreen} options={{
