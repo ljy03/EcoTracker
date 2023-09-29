@@ -14,8 +14,8 @@ import TaskBar from "./Task/taskBar";
 // Edit this list of tasks!
 const HomeScreen = ({ navigation }) => {
   // All the task amounts
-  const [tasks, setTasks] = useState(["Pick up 5 pieces of trash", "Do this"]); // an array of task objects
-  const [taskAmounts, setTaskAmounts] = useState([5, 4]); // Change this also if you add/remove a task!
+  const [tasks, setTasks] = useState(["Pick up 5 pieces of litter", "Plant a tree", "Don't eat a meal with meat", "Read about enviornmental issues"]); // an array of task objects
+  const [taskAmounts, setTaskAmounts] = useState([5, 2, 5, 10]); // Change this also if you add/remove a task!
   global.points = 60;
 
   const [localPoints, setLocalPoints] = useState(global.points);
@@ -81,7 +81,7 @@ const HomeScreen = ({ navigation }) => {
       <Pressable onPress={profilePage}> 
         <Image
           source={{
-            uri: "https://cdn-icons-png.flaticon.com/512/64/64572.png", // Profile Picture
+            uri: "https://images.pexels.com/photos/381739/pexels-photo-381739.jpeg?cs=srgb&dl=pexels-sevenstorm-juhaszimrus-381739.jpg&fm=jpg", // Profile Picture
           }}
           style={styles.pfp}
           
@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     marginTop: 40,
     marginRight: 5,
+    borderRadius: 75,
   },
   tasks: {
     fontSize: 20,
