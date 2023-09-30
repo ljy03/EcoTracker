@@ -19,7 +19,7 @@ const Profile = () => {
       {/* Profile Picture */}
       <Image
         source={{
-          uri: "https://images.pexels.com/photos/381739/pexels-photo-381739.jpeg?cs=srgb&dl=pexels-sevenstorm-juhaszimrus-381739.jpg&fm=jpg", // Replace with the URL of the user's profile image
+          uri: "https://images-ext-2.discordapp.net/external/_0qEhnmWIMXS2wHbBVM4DZEEO0NmWPpXWAslBl09ius/https/play-lh.googleusercontent.com/0SAFn-mRhhDjQNYU46ZwA7tz0xmRiQG4ZuZmuwU8lYmqj6zEpnqsee_6QDuhQ4ZofwXj%3Dw240-h480-rw?width=480&height=480", // Replace with the URL of the user's profile image
         }}
         style={styles.profileImage}
       />
