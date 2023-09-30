@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-global.points =5
+global.points = 0
 
 const usePoints = () => {
   const [localPoints, setLocalPoints] = useState(global.points);

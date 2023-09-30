@@ -1,6 +1,6 @@
 import { Dimensions } from "react-native";
 import "./QuestionScreen.js";
-import { StyleSheet, Text, TouchableHighlight, SafeAreaView, View, ImageBackground } from "react-native";
+import { StyleSheet, Text, TouchableHighlight, Pressable, SafeAreaView, View, ImageBackground } from "react-native";
 import tree from '../../assets/tree.png';
 import './HomeScreen.js';
 // import { useNavigation } from '@react-navigation/native';
@@ -18,20 +18,16 @@ export default function QuestionHomeScreen({ navigation }) {
         resizeMode="cover"
         
       >
-      <Text style={styles.text}>QUIZ</Text>
-      <TouchableHighlight style={styles.buttonStyling}>
-				<Button
-          color="#40B5AD"
-          onPress={() => {
+        <Text style={styles.text}>QUIZ</Text>
+      <Pressable onPress={() => {
             if (global.completedQuiz == false) {
               navigation.navigate("QuestionScreen")
             } else {
               Alert.alert("hmm...", "i think you may have already completed the quiz for today. try again tomrorrow")
             }
-          }}
-          title="Start Quiz"
-        />
-        </TouchableHighlight>
+          }} style={styles.buttonStyling}>
+          <Text>Start Quiz</Text>
+      </Pressable>
         </ImageBackground>
     </SafeAreaView>
   );
@@ -42,7 +38,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    // 
     justifyContent: "center",
   },
   header: {
@@ -54,9 +49,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonStyling: {
-    // width: "10%",
     marginTop: Dimensions.get("window").height/2.5,
-    padding: Dimensions.get("window").width / 10,
+    backgroundColor: "#40B5AD",
+    padding: 10,
+    height: 50,
+    width: 150,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
     //fontSize: 35,
   },
   text: {

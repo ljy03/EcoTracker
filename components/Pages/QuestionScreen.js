@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Dimensions } from "react-native";
-import { StyleSheet, Text, View, TouchableHighlight, ImageBackground, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, TouchableHighlight, Pressable, ImageBackground, SafeAreaView } from "react-native";
 import QuestionHomeScreen from "./QuestionHomeScreen.js";
 import { Button, Alert } from "react-native";
 import BottomTabNavigator from "../Navigation/BottomTabNavigator.js";
@@ -129,34 +129,18 @@ export default function QuestionScreen({ navigation }) {
 			<Text style={styles.text}>QUIZ</Text>
 			<Text style={styles.question}>{screens[array[counter]]["question"]}</Text>
 			
-			<TouchableHighlight style={styles.buttonStyling}>
-        <Button
-          color="#40B5AD"
-          onPress={()  => {questionAnswered("answer1")}}
-          title={screens[array[counter]]["answer1"]}
-				/>
-				</TouchableHighlight>
-				<TouchableHighlight style={styles.buttonStyling}>
-				<Button
-          color="#40B5AD"
-          onPress={()  => {questionAnswered("answer2")}}
-          title={screens[array[counter]]["answer2"]}
-				/>
-				</TouchableHighlight>
-				<TouchableHighlight style={styles.buttonStyling}>
-				<Button
-          color="#40B5AD"
-          onPress={()  => {questionAnswered("answer3")}}
-          title={screens[array[counter]]["answer3"]}
-				/>
-				</TouchableHighlight>
-				<TouchableHighlight style={styles.buttonStyling}>
-				<Button
-          color="#40B5AD"
-          onPress={()  => {questionAnswered("answer4")}}
-          title={screens[array[counter]]["answer4"]}
-        />
-        </TouchableHighlight>
+      <Pressable onPress={()  => {questionAnswered("answer1")}} style={styles.buttonStyling}>
+          <Text>{screens[array[counter]]["answer1"]}</Text>
+        </Pressable>
+        <Pressable onPress={()  => {questionAnswered("answer2")}} style={styles.buttonStyling}>
+          <Text>{screens[array[counter]]["answer2"]}</Text>
+        </Pressable>
+        <Pressable onPress={()  => {questionAnswered("answer3")}} style={styles.buttonStyling}>
+          <Text>{screens[array[counter]]["answer3"]}</Text>
+        </Pressable>
+        <Pressable onPress={()  => {questionAnswered("answer4")}} style={styles.buttonStyling}>
+          <Text>{screens[array[counter]]["answer4"]}</Text>
+      </Pressable>
       </ImageBackground>
     </SafeAreaView>
   );
@@ -177,7 +161,15 @@ const styles = StyleSheet.create({
   },
   buttonStyling: {
 		margin: Dimensions.get("window").height / 20,
-		alignItems: "center",
+    alignItems: "center",
+    backgroundColor: "#40B5AD",
+    padding: 10,
+    height: 40,
+    width: 200,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
   },
   background: {
     width: "100%",

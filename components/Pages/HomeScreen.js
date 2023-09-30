@@ -16,41 +16,6 @@ import TaskBar from "./Task/taskBar";
 
 // Edit this list of tasks!
 const HomeScreen = ({ navigation }) => {
-  // All the task amounts
-  // const [tasks, setTasks] = useState(["Pick up 5 pieces of litter", "Plant a tree", "Don't eat a meal with meat", "Read about enviornmental issues"]); // an array of task objects
-  // const [taskAmounts, setTaskAmounts] = useState([5, 2, 5, 10]); // Change this also if you add/remove a task!
-  // global.points = 60;
-
-  // const [localPoints, setLocalPoints] = useState(global.points);
-  
-  // const addPoint = () => {
-  //   global.points = global.points + 5;
-  //   setLocalPoints(global.points);
-  // };
-
-  // useEffect(() => {
-  //   setLocalPoints(global.points);
-  // }, [global.points]);
-
-  // Decrease Amount Function
-  // const decreaseAmount = (index) => {
-  //   const newAmounts = [...taskAmounts];
-  //   const newTasks = [...tasks];
-  
-  //   if (newAmounts[index] > 1) {
-  //     // Decrease the task amount by 1 if it's greater than 1
-  //     newAmounts[index] -= 1;
-  //   } else {
-  //     // Remove the task from both arrays if its amount is 1 (because after decreasing it will become 0)
-  //     newAmounts.splice(index, 1);
-  //     newTasks.splice(index, 1);
-  //   }
-  
-  //   setTaskAmounts(newAmounts); 
-  //   setTasks(newTasks); 
-  //   addPoint(); 
-  //   console.log(global.points); 
-  // };
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   const {localPoints, addPoint } = usePoints()
@@ -91,7 +56,7 @@ const HomeScreen = ({ navigation }) => {
       <Pressable onPress={profilePage}> 
         <Image
           source={{
-            uri: "https://images.pexels.com/photos/381739/pexels-photo-381739.jpeg?cs=srgb&dl=pexels-sevenstorm-juhaszimrus-381739.jpg&fm=jpg", // Profile Picture
+            uri: "https://images-ext-2.discordapp.net/external/_0qEhnmWIMXS2wHbBVM4DZEEO0NmWPpXWAslBl09ius/https/play-lh.googleusercontent.com/0SAFn-mRhhDjQNYU46ZwA7tz0xmRiQG4ZuZmuwU8lYmqj6zEpnqsee_6QDuhQ4ZofwXj%3Dw240-h480-rw?width=480&height=480", // Profile Picture
           }}
           style={styles.pfp}
           
@@ -162,7 +127,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 40,
     left: 5,
-    backgroundColor: 'teal', // or any color you prefer
+    backgroundColor: "#40B5AD", // or any color you prefer
     padding: 10,
     borderRadius: 25,
     height: 50,

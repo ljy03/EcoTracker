@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
       fontWeight: '600',
     },
     goBackButton: {
-        backgroundColor: '#4CAF50', // or any color you prefer
+        backgroundColor: "#40B5AD",
         padding: 10,
         borderRadius: 5,
         alignItems: 'center',
