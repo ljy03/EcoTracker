@@ -42,7 +42,7 @@ export const renderBubble = (props) => (
 export const renderSystemMessage = (props) => (
   <SystemMessage
     {...props}
-    containerStyle={{ backgroundColor: '#edfced' }}
+    containerStyle={{ backgroundColor: '#d7f1f7' }}
     wrapperStyle={{ borderWidth: 10, borderColor: 'white' }}
     textStyle={{ color: 'crimson', fontWeight: '900' }}
   />
@@ -52,8 +52,8 @@ export const renderMessage = (props) => (
   <Message
     {...props}
     containerStyle={{
-      left: { backgroundColor: '#edfced' },
-      right: { backgroundColor: '#edfced' },
+      left: { backgroundColor: '#d7f1f7' },
+      right: { backgroundColor: '#d7f1f7' },
     }}
   />
 );

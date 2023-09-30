@@ -58,7 +58,7 @@ const Chats = () => {
       renderMessageText={renderMessageText}
       // renderMessageImage
       isCustomViewBottom
-      messagesContainerStyle={{ backgroundColor: "#edfced"}}
+      messagesContainerStyle={{ backgroundColor: "#d7f1f7"}}
       parsePatterns={(linkStyle) => [
         {
           pattern: /#(\w+)/,

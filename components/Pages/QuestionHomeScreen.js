@@ -21,7 +21,7 @@ export default function QuestionHomeScreen({ navigation }) {
       <Text style={styles.text}>QUIZ</Text>
       <TouchableHighlight style={styles.buttonStyling}>
 				<Button
-          color="green"
+          color="#40B5AD"
           onPress={() => {
             if (global.completedQuiz == false) {
               navigation.navigate("QuestionScreen")

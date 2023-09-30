@@ -83,7 +83,7 @@ export default function QuestionScreen({ navigation }) {
     },
     7: {
       question: "What was the recyling rate in 2021 for paper?",
-      answer1: "42",
+      answer1: "42%",
       answer2: "68%",
       answer3: "54%",
       answer4: "77%",
@@ -131,28 +131,28 @@ export default function QuestionScreen({ navigation }) {
 			
 			<TouchableHighlight style={styles.buttonStyling}>
         <Button
-          color="green"
+          color="#40B5AD"
           onPress={()  => {questionAnswered("answer1")}}
           title={screens[array[counter]]["answer1"]}
 				/>
 				</TouchableHighlight>
 				<TouchableHighlight style={styles.buttonStyling}>
 				<Button
-          color="green"
+          color="#40B5AD"
           onPress={()  => {questionAnswered("answer2")}}
           title={screens[array[counter]]["answer2"]}
 				/>
 				</TouchableHighlight>
 				<TouchableHighlight style={styles.buttonStyling}>
 				<Button
-          color="green"
+          color="#40B5AD"
           onPress={()  => {questionAnswered("answer3")}}
           title={screens[array[counter]]["answer3"]}
 				/>
 				</TouchableHighlight>
 				<TouchableHighlight style={styles.buttonStyling}>
 				<Button
-          color="green"
+          color="#40B5AD"
           onPress={()  => {questionAnswered("answer4")}}
           title={screens[array[counter]]["answer4"]}
         />
