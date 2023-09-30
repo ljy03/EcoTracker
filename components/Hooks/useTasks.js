@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import usePoints from './usePoints';
 
-global.tasks = ["Pick up 5 pieces of litter", "Plant a tree", "Don't eat a meal with meat", "Read about environmental issues"];
-global.taskAmounts = [5, 2, 5, 10];
+global.tasks = ["Pick up garbage at a park", "Jogged at 1 park", "Talk with chatbot", "Do daily quiz"];
+global.taskAmounts = [2, 1, 1, 1];
 
 const useTasks = () => {
   const { localPoints, addPoint } = usePoints();
@@ -11,11 +11,8 @@ const useTasks = () => {
     const newAmounts = [...global.taskAmounts];
     const newTasks = [...global.tasks];
 
-    if (newAmounts[index] > 1) {
+    if (newAmounts[index] >= 1) {
       newAmounts[index] -= 1;
-    } else {
-      newAmounts.splice(index, 1);
-      newTasks.splice(index, 1);
     }
 
     global.taskAmounts = newAmounts;

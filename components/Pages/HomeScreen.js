@@ -5,7 +5,8 @@ import {
   ImageBackground,
   Pressable,
   StyleSheet,
-  Text
+  Text,
+  View
 } from "react-native";
 import { SafeAreaView } from "react-navigation";
 import usePoints from "../Hooks/usePoints";
@@ -101,6 +102,10 @@ const HomeScreen = ({ navigation }) => {
           <Text style={forceUpdate}>Update</Text>
       </Pressable>
 
+      <View style={styles.pointsBox}>
+          <Text style={styles.pointsText}>{localPoints} Points</Text>
+      </View>
+
         {/* Header */}
         <Text style={styles.text}>HOME PAGE</Text>
 
@@ -164,6 +169,25 @@ const styles = StyleSheet.create({
     width: 50,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  pointsBox: {
+    position: 'absolute', // This will allow you to position the box anywhere on the screen
+    top: '13%', // This will position the box in the middle vertically
+    left: '50%', // This will position the box in the middle horizontally
+    transform: [{ translateX: -50 }, { translateY: -50 }], // This will center the box based on its width and height
+    padding: 10,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'teal',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1, // This will ensure the box is above other elements
+    },
+  pointsText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'teal',
   },
   tasks: {
     fontSize: 20,

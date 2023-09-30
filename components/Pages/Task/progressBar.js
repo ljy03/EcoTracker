@@ -7,7 +7,7 @@ const ProgressBar = ({ tasks, taskAmounts }) => {
   useEffect(() => {
     setInitialTotalTasks(tasks.length);
   }, []);
-  const completedTasks = initialTotalTasks - tasks.length;
+  const completedTasks = taskAmounts.filter(amount => amount === 0).length;
   const progress = (completedTasks / initialTotalTasks) * 100;
 
   return (

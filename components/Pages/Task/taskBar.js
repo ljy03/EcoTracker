@@ -11,19 +11,23 @@ const TaskBar = ({ tasks, taskAmounts, onDecreaseAmount }) => {
       <Text style={styles.header}>Task Bar</Text>
 
       {/* Mapping over the list of tasks */}
-      {tasks.map((task, index) => (
-        <TouchableOpacity
-          key={index}
-          onPress={() => onDecreaseAmount(index)} // When a task is pressed, call the onDecreaseAmount function
-          style={styles.taskItem} // Styling for each task item
-        >
-          {/* Display the task name and the number of times it needs to be done */}
-          <Text>
-            #{index + 1} - {task} {taskAmounts[index]} time
-            {taskAmounts[index] > 1 ? "s" : ""}
-          </Text>
-        </TouchableOpacity>
-      ))}
+      {tasks.map((task, index) => {
+        if (taskAmounts[index] <= 0) return null; // Skip rendering tasks with amount <= 0
+
+        return (
+          <TouchableOpacity
+            key={index}
+            onPress={() => onDecreaseAmount(index)}
+            style={styles.taskItem}
+          >
+            <Text>
+              #{index + 1} - {task} {taskAmounts[index]} time
+              {taskAmounts[index] > 1 ? "s" : ""}
+            </Text>
+          </TouchableOpacity>
+        );
+      })}
+
     </View>
   );
 };

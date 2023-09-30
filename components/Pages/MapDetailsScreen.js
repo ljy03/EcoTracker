@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, SafeAreaView, StyleSheet, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import { ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import useTasks from '../Hooks/useTasks';
 
 function DetailsScreen({ route, navigation }) {
@@ -35,7 +35,16 @@ function DetailsScreen({ route, navigation }) {
           <Text>{hasPickedGarbage ? '✅' : '❌'} Have you picked up garbage?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={() => setHasJogged(!hasJogged)}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            if(!hasJogged){
+              decreaseAmount(1);
+              setHasJogged(true);
+            }
+          }}
+          disabled={hasJogged}
+        >
           <Text>{hasJogged ? '✅' : '❌'} Have you jogged?</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.goBackButton} onPress={() => navigation.goBack()}>
