@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     fontSize: Dimensions.get("window").width / 10,
   },
   buttonStyling: {
-		margin: Dimensions.get("window").height / 20,
+		margin: Dimensions.get("window").height / 30,
     alignItems: "center",
     backgroundColor: "#40B5AD",
     padding: 10,
